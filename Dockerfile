@@ -18,10 +18,9 @@ RUN cmake -S llama.cpp-source -B llama.cpp-source/build \
 
 RUN cmake --build llama.cpp-source/build --config Release --target llama-server -j2
 
-RUN useradd --create-home --shell /bin/bash appuser && \
-    chown -R appuser:appuser /app
+RUN chown -R node:node /app
 
-USER appuser
+USER node
 
 EXPOSE 8080
 
