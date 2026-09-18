@@ -18,4 +18,11 @@ RUN cmake -S llama.cpp-source -B llama.cpp-source/build \
 
 RUN cmake --build llama.cpp-source/build --config Release --target llama-server -j2
 
-CMD ["sh", "-c", "./llama.cpp-source/build/bin/llama-server -m ./models/Qwen3.5-0.8B-Q4_0.gguf --host 127.0.0.1 --port 8080 -c 4096 --reasoning-budget 0 & node server.js"]
+RUN useradd --create-home --shell /bin/bash appuser && \
+    chown -R appuser:appuser /app
+
+USER appuser
+
+EXPOSE 8080
+
+CMD ["sh", "-c", "./llama.cpp-source/build/bin/llama-server -m ./models/Qwen3.5-0.8B-Q4_0.gguf --host 127.0.0.1 --port 8081 -c 4096 --reasoning-budget 0 & node server.js"]

@@ -1,5 +1,6 @@
 const express = require("express");
 const PORT = process.env.PORT || 3000;
+const LLAMA_URL = process.env.LLAMA_URL || "http://127.0.0.1:8080";
 
 const app = express();
 
@@ -101,7 +102,7 @@ app.post("/api/chat", async (req, res) => {
     }
 
     const response = await fetch(
-      "http://127.0.0.1:8080/v1/chat/completions",
+      `${LLAMA_URL}/v1/chat/completions`,
       {
         method: "POST",
         headers: {
