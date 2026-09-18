@@ -1,0 +1,19 @@
+{
+  "name": "my-ai",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+        "start:llama": "llama.cpp\\llama-server.exe -m \"models\\Qwen3.5-0.8B-Q4_0.gguf\" --port 8080 -c 4096 --reasoning-budget 0",
+    "start:node": "node server.js",
+    "start": "concurrently \"npm run start:llama\" \"npm run start:node\""
+    },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^10.0.5",
+    "express": "^5.2.1"
+  }
+}
